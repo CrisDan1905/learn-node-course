@@ -12,6 +12,7 @@ const expressValidator = require('express-validator');
 const routes = require('./routes/index');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
+require('./handlers/passport'); // Aqui se exporta el manejador del passport al hacer login
 
 // create our Express app
 const app = express();

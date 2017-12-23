@@ -98,3 +98,13 @@ exports.getStoreBySlug = async (req, res, next) => {
     res.render('store', { store, title: store.name });
 
 }
+
+exports.getStoresByTag = async (req, res) => {
+    const tag = req.params.tag;
+    const tagQuery = tag || { $exists: true }; // Para que busque una tienda con un tag en especifico o sino todas las tiendas
+    const tagsPromise = Store.getTagsList(); // Metodo personalizado creado dentro del modelo
+    const storePromise = Store.find({ tags: tagQuery }); // NO se usa "await" ya que son metodos que no dependen unos de otros
+    const [tags, stores] = await Promise.all([tagsPromise, storePromise]); 
+
+    res.render('tags', { tags, title: 'Tags', tag, stores })
+}
