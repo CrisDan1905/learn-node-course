@@ -19,7 +19,12 @@ const userSchema = new Schema({
         type: String,
         required: 'Please supply a name',
         trim: true
-    }
+    },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
+    hearts: [
+        {type: mongoose.Schema.ObjectId, ref: 'Store'}
+    ]
 });
 // Esto es un "virtual field". Un campo que no se guardará realmente en la BD, pero servirá para el esquema
 userSchema.virtual('gravatar').get(function() {
