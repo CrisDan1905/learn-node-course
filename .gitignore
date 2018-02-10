@@ -6,3 +6,4 @@ node_modules/
 haters/
 variables.env
 /node_modules
+variables.env.now
